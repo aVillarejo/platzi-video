@@ -1,3 +1,3 @@
 #Proyecto del curso de React JS de Platzi
 
-##Platzi-Video
+##Platzi-Video Web
