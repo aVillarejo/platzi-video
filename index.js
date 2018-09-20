@@ -9,6 +9,7 @@ ReactDOM.render(
     title="Bitcoins"
     author="Alberto Villarejo"
     image="./images/covers/bitcoin.jpg"
+    type="video"
   />,
   app
 );

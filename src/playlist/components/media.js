@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import "./media.css";
-
+import PropTypes from "prop-types";
 class Media extends Component {
   render() {
     const { title, image, author } = this.props;
@@ -32,5 +32,14 @@ class Media extends Component {
     );
   }
 }
+
+//Validando props
+
+Media.propTypes = {
+  title: PropTypes.string.isRequired,
+  image: PropTypes.string.isRequired,
+  author: PropTypes.string.isRequired,
+  type: PropTypes.oneOf(["video", "audio"]).isRequired
+};
 
 export default Media;
