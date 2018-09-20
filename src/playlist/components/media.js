@@ -2,31 +2,36 @@ import React, { Component } from "react";
 import "./media.css";
 import PropTypes from "prop-types";
 class Media extends Component {
-  //Manera en EM6
+  //EM6
+
   // constructor(props) {
   //   super(props);
-  //   this.handleClick = this.handleClick.bind(this);
+  //   this.state = {
+  //     title: props.title,
+  //     author: props.author,
+  //     image: props.image
+  //   };
   // }
 
-  // EM7
+  //EM6
+  state = {
+    title: this.props.title,
+    author: this.props.author,
+    image: this.props.image
+  };
 
   handleClick = event => {
-    console.log(this.props.title);
+    //Cambiar uno o varios elementos del estado
+    this.setState({
+      title: "Foxy Lady",
+      author: "Jimi Hendrix",
+      image:"https://www.vinyl-eye.com/wp-content/uploads/2017/04/rs-3406-rectangle.jpg"
+    });
   };
 
   render() {
-    const { title, image, author } = this.props;
-    const styles = {
-      container: {
-        cursor: "pointer",
-        marginRight: 15,
-        display: "inline-block",
-        width: 260,
-        "vertical-align": "top",
-        color: "#44546b"
-        //border: "1px solid red"
-      }
-    };
+    const { title, image, author } = this.state;
+
     return (
       <div className="Media" onClick={this.handleClick}>
         <div className="Media-cover">
