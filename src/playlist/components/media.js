@@ -3,6 +3,7 @@ import "./media.css";
 
 class Media extends Component {
   render() {
+    const { title, image, author } = this.props;
     const styles = {
       container: {
         cursor: "pointer",
@@ -15,18 +16,17 @@ class Media extends Component {
       }
     };
     return (
-      //<div style={styles.container}>
       <div className="Media">
         <div className="Media-cover">
           <img
             className="Media-image"
-            src="./images/covers/bitcoin.jpg"
+            src={image}
             alt=""
             width={260}
             height={160}
           />
-          <h3 className="Media-title">¿Por qué aprender React?...</h3>
-          <p className="Media-author">AlbertoVillarejo</p>
+          <h3 className="Media-title">{title}</h3>
+          <p className="Media-author">{author}</p>
         </div>
       </div>
     );

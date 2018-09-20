@@ -4,5 +4,11 @@ import Media from "./src/playlist/components/media";
 
 const app = document.getElementById("app");
 
-const holaMundo = <h1>Hola Mundo !!</h1>;
-ReactDOM.render(<Media />, app);
+ReactDOM.render(
+  <Media
+    title="Bitcoins"
+    author="Alberto Villarejo"
+    image="./images/covers/bitcoin.jpg"
+  />,
+  app
+);

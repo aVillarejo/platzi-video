@@ -3,3 +3,7 @@
 node_modules/
 npm-debug.log
 yarn-error.log
+
+
+src/playlist/components/media_bootstrap.js
+src/playlist/components/media_materialize.js
