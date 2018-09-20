@@ -2,6 +2,18 @@ import React, { Component } from "react";
 import "./media.css";
 import PropTypes from "prop-types";
 class Media extends Component {
+  //Manera en EM6
+  // constructor(props) {
+  //   super(props);
+  //   this.handleClick = this.handleClick.bind(this);
+  // }
+
+  // EM7
+
+  handleClick = event => {
+    console.log(this.props.title);
+  };
+
   render() {
     const { title, image, author } = this.props;
     const styles = {
@@ -16,7 +28,7 @@ class Media extends Component {
       }
     };
     return (
-      <div className="Media">
+      <div className="Media" onClick={this.handleClick}>
         <div className="Media-cover">
           <img
             className="Media-image"
