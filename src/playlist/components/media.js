@@ -1,7 +1,7 @@
-import React, { Component } from "react";
+import React, { PureComponent } from "react";
 import "./media.css";
 import PropTypes from "prop-types";
-class Media extends Component {
+class Media extends PureComponent {
   //EM7
   state = {
     title: this.props.title,
