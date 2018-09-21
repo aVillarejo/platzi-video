@@ -5,4 +5,4 @@ import data from "./src/api.json"
 
 const app = document.getElementById("app");
 
-ReactDOM.render(<Playlist title="Destacados" data={data}/>,app);
+ReactDOM.render(<Playlist data={data}/>,app);
