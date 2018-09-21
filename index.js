@@ -1,15 +1,8 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import Media from "./src/playlist/components/media";
+import Playlist from "./src/playlist/components/playlist";
+import data from "./src/api.json"
 
 const app = document.getElementById("app");
 
-ReactDOM.render(
-  <Media
-    title="Bitcoins"
-    author="Alberto Villarejo"
-    image="./images/covers/bitcoin.jpg"
-    type="video"
-  />,
-  app
-);
+ReactDOM.render(<Playlist title="Destacados" data={data}/>,app);
