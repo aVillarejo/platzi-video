@@ -1,18 +1,14 @@
 import React from "react";
 import Playlist from "./../../playlist/components/playlist";
+import "./category.css";
 
 const Category = props => {
-  console.log(props)
-  const {playlist, title,description} = props
+  const { playlist, title, description } = props;
   return (
-    <div>
-      <div>
-        <p>{description}</p>
-        <h2>{title}</h2>  
-      </div>
-      <div>
-        <Playlist playlist={playlist} />
-      </div>
+    <div className="Category">
+      <p className="Category-description">{description}</p>
+      <h2 className="Category-title">{title}</h2>
+      <Playlist playlist={playlist} />
     </div>
   );
 };
