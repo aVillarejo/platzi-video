@@ -9,19 +9,19 @@ class Media extends PureComponent {
     cover: this.props.cover
   };
 
-  handleClick = event => {
-    //Cambiar uno o varios elementos del estado
-    this.setState({
-      title: "Foxy Lady",
-      author: "Jimi Hendrix",
-      cover:"https://www.vinyl-eye.com/wp-content/uploads/2017/04/rs-3406-rectangle.jpg"
-    });
-  };
+  // handleClick = event => {
+  //   //Cambiar uno o varios elementos del estado
+  //   this.setState({
+  //     title: "Foxy Lady",
+  //     author: "Jimi Hendrix",
+  //     cover:"https://www.vinyl-eye.com/wp-content/uploads/2017/04/rs-3406-rectangle.jpg"
+  //   });
+  // };
 
   render() {
     const { title, cover, author } = this.state;
     return (
-      <div className="Media" onClick={this.handleClick}>
+      <div className="Media" onClick={this.props.handleClick}>
         <div className="Media-cover">
           <img
             className="Media-image"
