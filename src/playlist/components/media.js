@@ -48,6 +48,3 @@ Media.propTypes = {
 };
 
 export default Media;
-
-
-
