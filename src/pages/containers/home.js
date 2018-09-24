@@ -4,6 +4,7 @@ import Categories from "../../categories/components/categories";
 import Related from "../components/related";
 import ModalContainer from "../../widgets/containers/modal";
 import Modal from "../../widgets/components/modal";
+import HandleError from "../../error/containers/handle-error";
 class Home extends React.Component {
   state = {
     modalVisible: false
@@ -23,20 +24,22 @@ class Home extends React.Component {
 
   render() {
     return (
-      <Layout>
-        <Related />
-        <Categories
-          handleOpenModal={this.handleOpenModal}
-          categories={this.props.data.categories}
-        />
-        {this.state.modalVisible && (
-          <ModalContainer>
-            <Modal handleClick={this.handleCloseModal}>
-              <h1>Esto es un modal</h1>
-            </Modal>
-          </ModalContainer>
-        )}
-      </Layout>
+      <HandleError>
+        <Layout>
+          <Related />
+          <Categories
+            handleOpenModal={this.handleOpenModal}
+            categories={this.props.data.categories}
+          />
+          {this.state.modalVisible && (
+            <ModalContainer>
+              <Modal handleClick={this.handleCloseModal}>
+                <h1>Esto es un modal</h1>
+              </Modal>
+            </ModalContainer>
+          )}
+        </Layout>
+      </HandleError>
     );
   }
 }
