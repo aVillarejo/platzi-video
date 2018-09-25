@@ -5,6 +5,7 @@ import Related from "../components/related";
 import ModalContainer from "../../widgets/containers/modal";
 import Modal from "../../widgets/components/modal";
 import HandleError from "../../error/containers/handle-error";
+import VideoPlayer from "../../player/containers/video-player";
 class Home extends React.Component {
   state = {
     modalVisible: false
@@ -27,6 +28,7 @@ class Home extends React.Component {
       <HandleError>
         <Layout>
           <Related />
+
           <Categories
             handleOpenModal={this.handleOpenModal}
             categories={this.props.data.categories}
@@ -35,6 +37,7 @@ class Home extends React.Component {
             <ModalContainer>
               <Modal handleClick={this.handleCloseModal}>
                 <h1>Esto es un modal!</h1>
+                <VideoPlayer />
               </Modal>
             </ModalContainer>
           )}
