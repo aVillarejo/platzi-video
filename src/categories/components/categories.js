@@ -1,7 +1,7 @@
 import React from "react";
 import Category from "./category";
 import "./categories.css";
-import Search from "../../widgets/containers/Search";
+import Search from "../../widgets/containers/search";
 
 const Categories = props => {
   return (

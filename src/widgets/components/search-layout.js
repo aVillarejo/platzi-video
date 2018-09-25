@@ -1,10 +1,15 @@
 import React from "react";
-import './search.css'
+import "./search.css";
 const SearchLayout = props => (
-  <form className="Search">
+  <form className="Search" onSubmit={props.handleSubmit}>
     <input
-      type="text" 
+      ref={props.setRef}
+      type="text"
+      placeholder="Busca tu video favorito"
       className="Search-input"
+      name="search"
+      onChange={props.handleChange}
+      value={props.value}
     />
   </form>
 );

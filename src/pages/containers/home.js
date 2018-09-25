@@ -34,7 +34,7 @@ class Home extends React.Component {
           {this.state.modalVisible && (
             <ModalContainer>
               <Modal handleClick={this.handleCloseModal}>
-                <h1>Esto es un modal</h1>
+                <h1>Esto es un modal!</h1>
               </Modal>
             </ModalContainer>
           )}
