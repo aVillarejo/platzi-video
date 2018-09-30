@@ -37,7 +37,7 @@ class Home extends React.Component {
             <ModalContainer>
               <Modal handleClick={this.handleCloseModal}>
                 <h1>Esto es un modal!</h1>
-                <VideoPlayer />
+                <VideoPlayer autoplay />
               </Modal>
             </ModalContainer>
           )}
