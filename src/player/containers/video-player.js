@@ -3,10 +3,13 @@ import Layout from "../components/video-player-layout";
 import Video from "../components/video";
 import Title from "../components/title";
 import PlayPause from "../components/play-pause";
+import Timer from "../components/timer";
+import Controls from "../components/vide-player-controls";
 
 class VideoPlayer extends Component {
   state = {
-    pause: true
+    pause: true,
+    duration: 0
   };
 
   togglePlay = event => {
@@ -28,7 +31,12 @@ class VideoPlayer extends Component {
       }));
     }
   }
-
+  handleMetadata = event => {
+    this.video = event.target;
+    this.setState(state => ({
+      duration: this.video.duration
+    }));
+  };
   render() {
     return (
       <Layout>
@@ -36,9 +44,13 @@ class VideoPlayer extends Component {
         <Video
           pause={this.state.pause}
           autoplay={this.props.autoplay}
+          handleLoadedMetadata={this.handleMetadata}
           src="http://download.blender.org/peach/bigbuckbunny_movies/BigBuckBunny_320x180.mp4"
         />
-        <PlayPause handleClick={this.togglePlay} pause={this.state.pause} />
+        <Controls>
+          <PlayPause handleClick={this.togglePlay} pause={this.state.pause} />
+          <Timer duration={this.state.duration} />
+        </Controls>
       </Layout>
     );
   }
