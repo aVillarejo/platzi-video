@@ -6,13 +6,16 @@ import PlayPause from "../components/play-pause";
 import Timer from "../components/timer";
 import Controls from "../components/video-player-controls";
 import ProgressBar from "../components/progress-bar";
+import Spinner from "../components/spinner";
+
 import { formattedTime } from "../../helpers/timeFormat";
 
 class VideoPlayer extends Component {
   state = {
     pause: true,
     duration: "00:00",
-    currentTime: 0
+    currentTime: 0,
+    loading: false
   };
 
   togglePlay = event => {
@@ -50,15 +53,30 @@ class VideoPlayer extends Component {
   handleProgressChange = event => {
     this.video.currentTime = event.target.value;
   };
+
+  handleSeeking = event => {
+    this.setState({
+      loading: true
+    });
+  };
+
+  handleSeeked = event => {
+    this.setState({
+      loading: false
+    });
+  };
   render() {
     return (
       <Layout>
         <Title title="Aqui va el titulo de un video chido!" />
+        <Spinner active={this.state.loading} />
         <Video
           pause={this.state.pause}
           autoplay={this.props.autoplay}
           handleLoadedMetadata={this.handleMetadata}
           handleTimeUpdate={this.handleTimeUpdate}
+          handleSeeking={this.handleSeeking}
+          handleSeeked={this.handleSeeked}
           src="http://download.blender.org/peach/bigbuckbunny_movies/BigBuckBunny_320x180.mp4"
         />
         <Controls>

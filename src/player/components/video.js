@@ -22,7 +22,9 @@ class Video extends Component {
       autoplay,
       src,
       handleLoadedMetadata,
-      handleTimeUpdate
+      handleTimeUpdate,
+      handleSeeking,
+      handleSeeked
     } = this.props;
 
     return (
@@ -33,6 +35,8 @@ class Video extends Component {
           ref={this.setRef}
           onLoadedMetadata={handleLoadedMetadata}
           onTimeUpdate={handleTimeUpdate}
+          onSeeking={handleSeeking}
+          onSeeked={handleSeeked}
         />
       </div>
     );
