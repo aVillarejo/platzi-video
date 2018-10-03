@@ -5,12 +5,13 @@ import Title from "../components/title";
 import PlayPause from "../components/play-pause";
 import Timer from "../components/timer";
 import Controls from "../components/video-player-controls";
+import {formattedTime} from "../../helpers/timeFormat"
 
 class VideoPlayer extends Component {
   state = {
     pause: true,
-    duration: 0,
-    currentTime:0
+    duration: "00:00",
+    currentTime:"00:00"
   };
 
   togglePlay = event => {
@@ -35,13 +36,12 @@ class VideoPlayer extends Component {
   handleMetadata = event => {
     this.video = event.target;
     this.setState(state => ({
-      duration: this.video.duration
+      duration: formattedTime(this.video.duration)
     }));
   };
   handleTimeUpdate = event =>{
-    console.log(this.video.currentTime)
     this.setState(state => ({
-      currentTime: this.video.currentTime
+      currentTime: formattedTime(this.video.currentTime)
     }));
   }
   render() {
