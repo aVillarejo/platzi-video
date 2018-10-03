@@ -6,15 +6,19 @@ import "./play-pause.css";
 const PlayPause = props => {
   return (
     <div className="PlayPause">
-      {props.pause ? (
-        <button onClick={props.handleClick}>
-          <Play color="white" size={25} />
-        </button>
-      ) : (
+      {props.pause ?
+        (
+          <button onClick={props.handleClick}>
+            <Play color="white" size={25} />
+          </button>
+        )
+      :
+        (
         <button onClick={props.handleClick}>
           <Pause color="white" size={25} />
         </button>
-      )}
+        )
+      }
     </div>
   );
 };

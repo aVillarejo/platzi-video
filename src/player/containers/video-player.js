@@ -16,7 +16,9 @@ class VideoPlayer extends Component {
     pause: true,
     duration: "00:00",
     currentTime: 0,
-    loading: false
+    loading: false,
+    mute: false,
+    lastVolume: 1
   };
 
   togglePlay = event => {
@@ -26,6 +28,7 @@ class VideoPlayer extends Component {
     this.setState(state => ({
       pause: !state.pause
     }));
+    console.log("lastVolume", this.state.lastVolume);
   };
 
   componentDidMount() {
@@ -68,6 +71,33 @@ class VideoPlayer extends Component {
   };
   handleVolumeChange = event => {
     this.video.volume = event.target.value;
+    let  vol = this.video.volume
+    this.setState(state => ({
+      lastVolume: vol
+    }));
+    console.log("Ajustando volumen a: ", this.video.volume);
+    
+  };
+
+
+  toggleMute = event => {
+    if (this.state.mute) {
+      //Activar sonido si esta en mute
+      console.log("Sonido activado")
+      this.setState(state => ({
+        mute: !state.mute
+      }));
+      this.video.volume = this.state.lastVolume;
+
+    } else {
+      //Activar mute
+      console.log("Mute activado")
+      this.setState(state => ({
+        mute: !state.mute
+      }));
+      this.video.volume = 0;
+
+    }
   };
   render() {
     return (
@@ -85,7 +115,12 @@ class VideoPlayer extends Component {
         />
         <Controls>
           <PlayPause handleClick={this.togglePlay} pause={this.state.pause} />
-          <Volume handleVolumeChange={this.handleVolumeChange} />
+          <Volume
+            handleVolumeChange={this.handleVolumeChange}
+            handleClick={this.toggleMute}
+            mute={this.state.mute}
+            value={this.state.lastVolume}
+          />
           <ProgressBar
             value={this.state.currentTime}
             duration={this.state.duration}
