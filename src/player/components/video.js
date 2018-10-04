@@ -37,6 +37,7 @@ class Video extends Component {
           onTimeUpdate={handleTimeUpdate}
           onSeeking={handleSeeking}
           onSeeked={handleSeeked}
+          //={fullScreen}
         />
       </div>
     );

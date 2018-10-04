@@ -8,6 +8,7 @@ import Controls from "../components/video-player-controls";
 import ProgressBar from "../components/progress-bar";
 import Spinner from "../components/spinner";
 import Volume from "../components/volume";
+import FullScreen from "../components/full-screen";
 
 import { formattedTime } from "../../helpers/timeFormat";
 
@@ -18,7 +19,8 @@ class VideoPlayer extends Component {
     currentTime: 0,
     loading: false,
     mute: false,
-    lastVolume: 1
+    lastVolume: 1,
+    isFull:false
   };
 
   togglePlay = event => {
@@ -96,16 +98,38 @@ class VideoPlayer extends Component {
         mute: !state.mute
       }));
       this.video.volume = 0;
-
     }
   };
+
+
+  toggleFullScreen = event =>{
+    if (!document.webkitIsFullScreen) {
+      //Activar sonido si esta en mute
+      console.log("Activando FullScreen")
+      this.setState(state => ({
+        isFull: !state.isFull
+      }));
+      this.player.webkitRequestFullscreen()
+    } else {
+      //Activar mute
+      console.log("Saliendo de FullScreen")
+      this.setState(state => ({
+        isFull: !state.isFull
+      }));
+      document.webkitExitFullscreen();
+    }
+  };
+  setRef = element => {
+    this.player= element;
+  }
   render() {
     return (
-      <Layout>
+      <Layout setRef={this.setRef}>
         <Title title="Aqui va el titulo de un video chido!" />
         <Spinner active={this.state.loading} />
         <Video
           pause={this.state.pause}
+          fullScreen={this.state.isFull}
           autoplay={this.props.autoplay}
           handleLoadedMetadata={this.handleMetadata}
           handleTimeUpdate={this.handleTimeUpdate}
@@ -130,6 +154,7 @@ class VideoPlayer extends Component {
             duration={formattedTime(this.state.duration)}
             currentTime={formattedTime(this.state.currentTime)}
           />
+          <FullScreen isFull={this.state.isFull} handleClick={this.toggleFullScreen}/>
         </Controls>
       </Layout>
     );

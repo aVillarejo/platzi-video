@@ -3,6 +3,7 @@ import "./video-player-layout.css";
 
 const VideoPlayerLayout = props => (
   <div
+    ref={props.setRef} 
     className="VideoPlayer"
     //style={styles.VideoPlayer}
   >
