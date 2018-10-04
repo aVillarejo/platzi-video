@@ -11,6 +11,11 @@ import Volume from "../components/volume";
 import FullScreen from "../components/full-screen";
 
 import { formattedTime } from "../../helpers/timeFormat";
+import {
+  isFullScreen,
+  requestFullScreen,
+  exitFullScreen
+} from "../../helpers/fullscreen-validator";
 
 class VideoPlayer extends Component {
   state = {
@@ -20,7 +25,7 @@ class VideoPlayer extends Component {
     loading: false,
     mute: false,
     lastVolume: 1,
-    isFull:false
+    isFull: false
   };
 
   togglePlay = event => {
@@ -73,27 +78,24 @@ class VideoPlayer extends Component {
   };
   handleVolumeChange = event => {
     this.video.volume = event.target.value;
-    let  vol = this.video.volume
+    let vol = this.video.volume;
     this.setState(state => ({
       lastVolume: vol
     }));
     console.log("Ajustando volumen a: ", this.video.volume);
-    
   };
-
 
   toggleMute = event => {
     if (this.state.mute) {
       //Activar sonido si esta en mute
-      console.log("Sonido activado")
+      console.log("Sonido activado");
       this.setState(state => ({
         mute: !state.mute
       }));
       this.video.volume = this.state.lastVolume;
-
     } else {
       //Activar mute
-      console.log("Mute activado")
+      console.log("Mute activado");
       this.setState(state => ({
         mute: !state.mute
       }));
@@ -101,27 +103,44 @@ class VideoPlayer extends Component {
     }
   };
 
+  // toggleFullScreen = event =>{
+  //   if (!document.webkitIsFullScreen) {
+  //     //Activar sonido si esta en mute
+  //     console.log("Activando FullScreen")
+  //     this.setState(state => ({
+  //       isFull: !state.isFull
+  //     }));
+  //     this.player.webkitRequestFullscreen()
+  //   } else {
+  //     //Activar mute
+  //     console.log("Saliendo de FullScreen")
+  //     this.setState(state => ({
+  //       isFull: !state.isFull
+  //     }));
+  //     document.webkitExitFullscreen();
+  //   }
+  // };
 
-  toggleFullScreen = event =>{
-    if (!document.webkitIsFullScreen) {
-      //Activar sonido si esta en mute
-      console.log("Activando FullScreen")
+  toggleFullScreen = event => {
+    //Valida si esta en fullScreen en el navegador
+    if (!isFullScreen()) {
+      //Entra en full screen y aplica un valor al estado para cambiar el icono a mostrar
+      console.log("Activando FullScreen");
       this.setState(state => ({
         isFull: !state.isFull
       }));
-      this.player.webkitRequestFullscreen()
+      requestFullScreen(this.player);
     } else {
-      //Activar mute
-      console.log("Saliendo de FullScreen")
-      this.setState(state => ({
-        isFull: !state.isFull
-      }));
-      document.webkitExitFullscreen();
+      //Sale del FullScreen  y aplica un valor al estado para cambiar el icono a mostrar
+      console.log("Saliendo de FullScreen");
+      this.setState(state => ({ isFull: !state.isFull }));
+      exitFullScreen();
     }
   };
+
   setRef = element => {
-    this.player= element;
-  }
+    this.player = element;
+  };
   render() {
     return (
       <Layout setRef={this.setRef}>
@@ -154,7 +173,10 @@ class VideoPlayer extends Component {
             duration={formattedTime(this.state.duration)}
             currentTime={formattedTime(this.state.currentTime)}
           />
-          <FullScreen isFull={this.state.isFull} handleClick={this.toggleFullScreen}/>
+          <FullScreen
+            isFull={this.state.isFull}
+            handleClick={this.toggleFullScreen}
+          />
         </Controls>
       </Layout>
     );
