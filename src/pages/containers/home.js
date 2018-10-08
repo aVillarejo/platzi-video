@@ -8,7 +8,8 @@ import HandleError from "../../error/containers/handle-error";
 import VideoPlayer from "../../player/containers/video-player";
 class Home extends React.Component {
   state = {
-    modalVisible: false
+    modalVisible: false,
+    media: 0
   };
 
   handleCloseModal = event => {
@@ -17,9 +18,12 @@ class Home extends React.Component {
     });
   };
 
-  handleOpenModal = () => {
+  handleOpenModal = media => {
     this.setState({
-      modalVisible: true
+      modalVisible: true,
+      //Si el valor de la key se llama igual a la propiedad se aplica sugar sintax
+      //media:media
+      media: media
     });
   };
 
@@ -36,8 +40,11 @@ class Home extends React.Component {
           {this.state.modalVisible && (
             <ModalContainer>
               <Modal handleClick={this.handleCloseModal}>
-                <h1>Esto es un modal!</h1>
-                <VideoPlayer autoplay />
+                <VideoPlayer
+                  autoplay
+                  src={this.state.media.src}
+                  title={this.state.media.title}
+                />
               </Modal>
             </ModalContainer>
           )}
