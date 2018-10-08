@@ -16,6 +16,7 @@ class Video extends Component {
   }
   setRef = element => {
     this.video = element;
+    console.log("video: ", this.video);
   };
   render() {
     const {
@@ -37,7 +38,6 @@ class Video extends Component {
           onTimeUpdate={handleTimeUpdate}
           onSeeking={handleSeeking}
           onSeeked={handleSeeked}
-          //={fullScreen}
         />
       </div>
     );

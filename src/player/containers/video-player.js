@@ -103,17 +103,17 @@ class VideoPlayer extends Component {
     }
   };
 
-  // toggleFullScreen = event =>{
+  // toggleFullScreen = event => {
   //   if (!document.webkitIsFullScreen) {
   //     //Activar sonido si esta en mute
-  //     console.log("Activando FullScreen")
+  //     console.log("Activando FullScreen");
   //     this.setState(state => ({
   //       isFull: !state.isFull
   //     }));
-  //     this.player.webkitRequestFullscreen()
+  //     this.player.webkitRequestFullscreen();
   //   } else {
   //     //Activar mute
-  //     console.log("Saliendo de FullScreen")
+  //     console.log("Saliendo de FullScreen");
   //     this.setState(state => ({
   //       isFull: !state.isFull
   //     }));
@@ -138,24 +138,26 @@ class VideoPlayer extends Component {
     }
   };
 
+  // toggleFullScreen = event => {
+  //   if (document.mozFullScreen) {
+  //     document.mozCancelFullScreen();
+  //   } else if (document.webkitIsFullScreen) {
+  //     document.webkitExitFullscreen();
+  //   } else if (this.player.mozRequestFullScreen) {
+  //     this.player.mozRequestFullScreen();
+  //   } else if (this.player.webkitRequestFullscreen) {
+  //     this.player.webkitRequestFullscreen();
+  //   }
+  // };
+
   setRef = element => {
     this.player = element;
   };
   render() {
     return (
       <Layout setRef={this.setRef}>
-        <Title title="Aqui va el titulo de un video chido!" />
+        <Title title={this.props.title} />
         <Spinner active={this.state.loading} />
-        <Video
-          pause={this.state.pause}
-          fullScreen={this.state.isFull}
-          autoplay={this.props.autoplay}
-          handleLoadedMetadata={this.handleMetadata}
-          handleTimeUpdate={this.handleTimeUpdate}
-          handleSeeking={this.handleSeeking}
-          handleSeeked={this.handleSeeked}
-          src="http://download.blender.org/peach/bigbuckbunny_movies/BigBuckBunny_320x180.mp4"
-        />
         <Controls>
           <PlayPause handleClick={this.togglePlay} pause={this.state.pause} />
           <Volume
@@ -178,6 +180,16 @@ class VideoPlayer extends Component {
             handleClick={this.toggleFullScreen}
           />
         </Controls>
+        <Video
+          pause={this.state.pause}
+          fullScreen={this.state.isFull}
+          autoplay={this.props.autoplay}
+          handleLoadedMetadata={this.handleMetadata}
+          handleTimeUpdate={this.handleTimeUpdate}
+          handleSeeking={this.handleSeeking}
+          handleSeeked={this.handleSeeked}
+          src={this.props.src}
+        />
       </Layout>
     );
   }

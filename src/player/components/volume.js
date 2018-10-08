@@ -1,5 +1,6 @@
 import React from "react";
 import VolumeIcon from "../../icon/components/volume";
+import MuteIcon from "../../icon/components/mute";
 import "./volume.css";
 
 const Volume = props => {
@@ -24,7 +25,7 @@ const Volume = props => {
   }
   return (
     <button className="Volume" onClick={props.handleClick}>
-      <VolumeIcon color="gray" size={25} />
+      <MuteIcon color="#c4c4c4" size={25} />
     </button>
   );
 };
