@@ -15,6 +15,13 @@ function handleSubmit(event) {
   const data = new FormData($form);
   const title = data.get("title");
   console.log(title);
+  store.dispatch({
+    type: "ADD_SONG",
+    payload: {
+      //title:title
+      title //sugar sintax
+    }
+  });
 }
 /* Crear store */
 /* const store = createStore(
