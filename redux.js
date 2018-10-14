@@ -1,3 +1,5 @@
+import { createStore } from "redux";
+
 const $form = document.getElementById("form");
 $form.addEventListener("submit", handleSubmit);
 
@@ -14,3 +16,26 @@ function handleSubmit(event) {
   const title = data.get("title");
   console.log(title);
 }
+/* Crear store */
+/* const store = createStore(
+  reducer,
+  initialState,
+  enhancer);
+*/
+const initialState = [
+  {
+    title: "despacito"
+  },
+  {
+    title: "One more time"
+  },
+  {
+    title: "Echame la culpa"
+  }
+];
+
+const store = createStore(
+  (state) => state,
+  initialState,
+  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+);
