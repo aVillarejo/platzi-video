@@ -1,5 +1,4 @@
 import { createStore } from "redux";
-
 /*Elementos DOM*/
 const $form = document.getElementById("form");
 
