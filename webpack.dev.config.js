@@ -2,7 +2,7 @@ const path = require("path");
 
 module.exports = {
   entry: {
-    home: path.resolve(__dirname, "index.js"),
+    home: path.resolve(__dirname, "app.js"),
     redux: path.resolve(__dirname, "./redux_vanillaJS/redux.js")
   },
   output: {
